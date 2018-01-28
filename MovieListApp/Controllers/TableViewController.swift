@@ -18,7 +18,9 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         loadCategories()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +44,23 @@ class TableViewController: UITableViewController {
 
         return cell
     }
+    
+    // MARK: - TableView manioulation
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToMovies", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! MoviesViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destination.selectedCategory = categories[indexPath.row]
+        }
+    }
+    
+    
     
     func loadCategories (with request: NSFetchRequest<Category> = Category.fetchRequest()) {
         
@@ -80,13 +99,16 @@ class TableViewController: UITableViewController {
             self.tableView.reloadData()
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            self.tableView.reloadData()
+        }
+        
         alert.addTextField { (field) in
             field.placeholder = "Add new category"
             textfield = field
         }
-        
+        alert.addAction(cancelAction)
         alert.addAction(action)
-        
         present(alert, animated: true, completion: nil)
         
         

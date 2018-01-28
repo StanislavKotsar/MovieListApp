@@ -41,7 +41,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="Mql-kK-rRu" kind="show" id="rBl-LD-4wZ"/>
+                        <segue destination="Mql-kK-rRu" kind="show" identifier="goToMovies" id="rBl-LD-4wZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njG-zl-GSa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,7 +71,13 @@
                             <outlet property="delegate" destination="Mql-kK-rRu" id="2XO-T3-I9X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movies" id="sCp-oR-mDn"/>
+                    <navigationItem key="navigationItem" title="Movies" id="sCp-oR-mDn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JhN-IH-juH">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Mql-kK-rRu" id="sj8-e9-ecI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="woy-FE-qfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
